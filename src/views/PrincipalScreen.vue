@@ -1,14 +1,16 @@
 <script>
 import BookList from "../components/BookList.vue"
+import Profile from "../components/Profile.vue"
 export default {
     components: {
-        BookList
+        BookList, Profile
     }
 }
 </script>
 
 <template>
     <header>
+        <Profile/>
         <nav>
             <RouterLink to="/">Discover</RouterLink>
             <RouterLink to="/about">My books</RouterLink>
@@ -26,6 +28,7 @@ export default {
 
 
 <style>
+
 nav {
     font-family: Cardo;
     overflow: hidden;
