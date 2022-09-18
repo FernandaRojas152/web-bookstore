@@ -10,16 +10,19 @@ export default {
 
 <template>
     <header>
-        <Profile/>
         <nav>
-            <RouterLink to="/">Discover</RouterLink>
-            <RouterLink to="/about">My books</RouterLink>
+            <RouterLink to="/FerLex">Discover</RouterLink>
+            <RouterLink to="/addBook">Add book</RouterLink>
             <RouterLink to="/about">Cart</RouterLink>
-            <RouterLink to="/about">My Account</RouterLink>
+            <RouterLink to="/account">My Account</RouterLink>
         </nav>
     </header>
     <main>
-        <BookList />
+        <Profile/>
+        <div class="panels">
+            <BookList />
+        </div>
+        
     </main>
     <footer>
 
@@ -27,10 +30,11 @@ export default {
 </template>
 
 
-<style>
+<style scoped lang="scss">
 
 nav {
     font-family: Cardo;
+    font-size: 22px;
     overflow: hidden;
     width: 100%;
     background-color: papayawhip;
@@ -53,8 +57,10 @@ nav a {
     padding: 0 1rem;
 }
 
-nav a:first-of-type {
-    border: 0;
+
+
+.panels{
+    position:initial;
 }
 @media (min-width: 1024px) {
     nav {

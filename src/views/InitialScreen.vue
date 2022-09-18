@@ -14,8 +14,8 @@
             </article>
             <router-link to="/FerLex" class-active="">
                 <div class="buttons">
-                    <button>Sign in</button>
-                    <button>Sign up</button>
+                    <button>Continue</button>
+                    <!--<button>Sign up</button>-->
                 </div>
             </router-link>
         </section>
@@ -92,11 +92,11 @@ button {
         padding-left: 10px;
         width: 550px;
         height: 550px;
+        left: 0px;
     }
 
     figure {
         float:left;
-        justify-content: flex-start;
     }
 
     .content {

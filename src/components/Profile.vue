@@ -10,10 +10,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
+figure{
+    padding-top: 20px;
+    text-align: right;
+}
+
 figure img {
     width: 100px;
-    height: 70px;
-    left: 299px;
+    height: 70px;    
 }
 </style>

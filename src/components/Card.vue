@@ -85,7 +85,5 @@ export default {
     width: 160px;
     height:250px;
     }
-
-
 }
 </style>
