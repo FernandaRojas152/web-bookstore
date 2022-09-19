@@ -14,11 +14,11 @@ export default {
             <RouterLink to="/FerLex">Discover</RouterLink>
             <RouterLink to="/addBook">Add book</RouterLink>
             <RouterLink to="/about">Cart</RouterLink>
-            <RouterLink to="/account">My Account</RouterLink>
+            <RouterLink to="/account"><Profile/></RouterLink>
         </nav>
     </header>
     <main>
-        <Profile/>
+        
         <div class="panels">
             <BookList />
         </div>
@@ -40,7 +40,7 @@ nav {
     background-color: papayawhip;
     text-align: center;
     position: fixed;
-    height: 55px;
+    height: 70px;
     bottom: 40px;
 }
 
