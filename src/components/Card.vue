@@ -1,14 +1,18 @@
 <template>
     <div class="container">
-        <div class="card">
-            <div class="card-image">
-                <img src="../assets/books/poe-poems.jpg" alt="...">
-            </div>
-            <div class="card-content">
-                <h3>The Complete Poetry</h3>
-                <p>Edgar Allan Poe</p>
-            </div>
-        </div>
+        <ul>
+            <li v-for="book in books" :key="book.name">
+                <div class="card">
+                    <div class="card-image">
+                        <img :src="book.image" :alt="book.name">
+                    </div>
+                    <div class="card-content">
+                        <h3>{{book.name}}</h3>
+                        <p>{{book.author}}</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -19,10 +23,70 @@ export default {
         return {
             books: [
                 {
-                    img: "",
-                    author: "",
-                    name: ""
-                }
+                    image: './src/assets/books/poe-poems.jpg',
+                    name: 'Poems from Edgar Allan Poe',
+                    author: 'Edgar Allan Poe',
+                    description: 'Edgar Allan Poe is credited with having pioneered the short story, having perfected the tale of psychological horror, and having revolutionized modern poetics.',
+                    genre: '',
+                    genres: ['Terror', 'Supernatural fiction', 'Poetry'],
+                },
+                {
+                    image: './src/assets/books/poe-tales.jpg',
+                    name: 'The Complete Tales and Poems from Edgar Allan Poe',
+                    author: 'Edgar Allan Poe',
+                    description: 'Edgar Allan Poe is credited with having pioneered the short story, having perfected the tale of psychological horror, and having revolutionized modern poetics.',
+                    genre: '',
+                    genres: ['Terror', 'Supernatural fiction', 'Thriller'],
+                },
+                {
+                    image: './src/assets/books/chuya-poems.jpg',
+                    name: 'The Poems of Nakahara Chuya',
+                    author: 'Nakahara Chuya',
+                    description: 'This selection of poems from throughout Nakahara’s creative life includes collected and uncollected work and draws on recent scholarship to give a full account of this extraordinary figure.',
+                    genre: '',
+                    genres: ['Poetry', 'Supernatural fiction'],
+                },
+                {
+                    image: './src/assets/books/crime-punishment.jpg',
+                    name: 'The Complete Tales and Poems from Edgar Allan Poe',
+                    author: 'Edgar Allan Poe',
+                    description: 'Edgar Allan Poe is credited with having pioneered the short story, having perfected the tale of psychological horror, and having revolutionized modern poetics.',
+                    genre: '',
+                    genres: ['Terror', 'Supernatural fiction'],
+                },
+                {
+                    image: './src/assets/books/little-women.jpg',
+                    name: 'The Complete Tales and Poems from Edgar Allan Poe',
+                    author: 'Edgar Allan Poe',
+                    description: 'Edgar Allan Poe is credited with having pioneered the short story, having perfected the tale of psychological horror, and having revolutionized modern poetics.',
+                    genre: '',
+                    genres: ['Terror', 'Supernatural fiction'],
+                },
+                {
+                    image: './src/assets/books/pride-prejudice.jpeg',
+                    name: 'The Complete Tales and Poems from Edgar Allan Poe',
+                    author: 'Edgar Allan Poe',
+                    description: 'Edgar Allan Poe is credited with having pioneered the short story, having perfected the tale of psychological horror, and having revolutionized modern poetics.',
+                    genre: '',
+                    genres: ['Terror', 'Supernatural fiction'],
+                },
+                {
+                    image: './src/assets/books/song-achilles.jpg',
+                    name: 'The Complete Tales and Poems from Edgar Allan Poe',
+                    author: 'Edgar Allan Poe',
+                    description: 'Edgar Allan Poe is credited with having pioneered the short story, having perfected the tale of psychological horror, and having revolutionized modern poetics.',
+                    genre: '',
+                    genres: ['Terror', 'Supernatural fiction'],
+                },
+                {
+                    image: './src/assets/books/great-gatsby.png',
+                    name: 'The Great Gatsby',
+                    author: 'Edgar Allan Poe',
+                    description: 'Edgar Allan Poe is credited with having pioneered the short story, having perfected the tale of psychological horror, and having revolutionized modern poetics.',
+                    genre: '',
+                    genres: ['Terror', 'Supernatural fiction'],
+                },
+
             ]
         }
     }
@@ -31,13 +95,18 @@ export default {
 
 
 <style>
-.container { 
+.container {
+    padding: 50px 0px 0px 14px;
     display: flex;
+}
+
+ul>li {
+    display: inline-block;
 }
 
 .card {
     width: 140px;
-    height:230px;
+    height: 230px;
     padding: 0px;
     border: 0;
     border-radius: 25px;
@@ -57,12 +126,13 @@ export default {
 }
 
 .card .card-content h3 {
+    height: 157px;
+    width: 170px;
     color: #000000;
     font-family: 'Cardo';
     font-weight: 700;
     font-size: 14px;
     margin-top: 16px;
-
 }
 
 .card .card-content p {
@@ -82,8 +152,8 @@ export default {
     }
 
     .card {
-    width: 160px;
-    height:250px;
+        width: 160px;
+        height: 250px;
     }
 }
 </style>

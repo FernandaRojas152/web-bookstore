@@ -12,12 +12,14 @@
                 <h2 id="text-library">LIBRARY</h2>
                 <p>“I have always imagined that Paradise will be a kind of library.”</p>
             </article>
-            <router-link to="/FerLex" class-active="">
-                <div class="buttons">
-                    <button>Continue</button>
+            <div class="buttons">
+            <router-link to="/FerLex" tag="button" class="page"> Continue
+                
+                    <!-- <button>Continue</button>-->
                     <!--<button>Sign up</button>-->
-                </div>
+                
             </router-link>
+            </div>
         </section>
 </template>
 
@@ -73,6 +75,18 @@ p {
     justify-content: space-around;
     align-items: center;
     top: 102px;
+}
+.page{
+    margin: 10px;
+    font-family: Cardo;
+    font-size: 22px;
+    color: white;
+    border: none;
+    width: 294px;
+    height: 39px;
+    border-radius: 5px;
+    background-color: #2c3639;
+    text-align: center;
 }
 
 button {

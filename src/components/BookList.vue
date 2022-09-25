@@ -13,34 +13,17 @@ export default {
     },
     data() {
         return {
-            books: [
-                {
-                    bookImg: "",
-                    name: "",
-                    author: ""
-                },
-                {
-                    bookImg: "",
-                    name: "",
-                    author: ""
-                },
-                {
-                    bookImg: "",
-                    name: "",
-                    author: ""
-                }
-            ]
+           
         }
     }
 }
 </script>
 
 <template>
-    <header>
-        <h3> My Library </h3>
-    </header>
     <main>
-        <div class="q-pa-md">
+        <h3>My Library</h3>
+        <Card/>
+        <!--  <div class="q-pa-md">
             <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated
                 control-color="primary" navigation padding arrows height="500px"
                 class="bg-grey-1 shadow-2 rounded-borders">
@@ -55,10 +38,10 @@ export default {
                         <slot>
                             <Card />
                         </slot>
-                        <!-- <q-img class="rounded-borders col-6 full-height"
+                        <q-img class="rounded-borders col-6 full-height"
                             src="https://cdn.quasar.dev/img/mountains.jpg" />
                         <q-img class="rounded-borders col-6 full-height"
-                            src="https://cdn.quasar.dev/img/parallax1.jpg" /> -->
+                            src="https://cdn.quasar.dev/img/parallax1.jpg" />
                     </div>
                 </q-carousel-slide>
                 <q-carousel-slide :name="2" class="column no-wrap">
@@ -72,9 +55,9 @@ export default {
                         <slot>
                             <Card />
                         </slot>
-                        <!-- <q-img class="rounded-borders col-6 full-height"
+                        <q-img class="rounded-borders col-6 full-height"
                             src="https://cdn.quasar.dev/img/parallax2.jpg" />
-                        <q-img class="rounded-borders col-6 full-height" src="https://cdn.quasar.dev/img/quasar.jpg" /> -->
+                        <q-img class="rounded-borders col-6 full-height" src="https://cdn.quasar.dev/img/quasar.jpg" />
                     </div>
                 </q-carousel-slide>
                 <q-carousel-slide :name="3" class="column no-wrap">
@@ -88,13 +71,13 @@ export default {
                         <slot>
                             <Card />
                         </slot>
-                        <!-- <q-img class="rounded-borders col-6 full-height" src="https://cdn.quasar.dev/img/cat.jpg" />
+                        <q-img class="rounded-borders col-6 full-height" src="https://cdn.quasar.dev/img/cat.jpg" />
                         <q-img class="rounded-borders col-6 full-height"
-                            src="https://cdn.quasar.dev/img/linux-avatar.png" /> -->
+                            src="https://cdn.quasar.dev/img/linux-avatar.png" />
                     </div>
                 </q-carousel-slide>
             </q-carousel>
-        </div>
+        </div> -->
     </main>
     <footer>
 
@@ -105,12 +88,11 @@ export default {
 
 <style>
 h3 {
+    padding-top: 50px;
     font-family: 'Cardo';
-    position: initial;
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
-    line-height: 27px;
 }
 
 .q-pa-md {

@@ -31,7 +31,9 @@ export default {
 
 
 <style scoped lang="scss">
-
+header{
+    position: sticky;
+}
 nav {
     font-family: Cardo;
     font-size: 22px;
