@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import InitialScreen from '../views/InitialScreen.vue';
 import PrincipalScreen from '../views/PrincipalScreen.vue';
 import AddBookView from '../views/AddBookView.vue';
+import DetailCard from '../components/DetailCard.vue'
 import ShowBookView from '../views/ShowBookView.vue';
 
 const router = createRouter({
@@ -27,9 +27,9 @@ const router = createRouter({
       component: AddBookView,
     },
     {
-      path: '/book',
+      path: '/book/:bookId',
       name:'show-book',
-      component: ShowBookView,
+      component: DetailCard,
     },
   ]
 })

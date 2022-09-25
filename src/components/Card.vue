@@ -1,10 +1,12 @@
 <template>
     <div class="container">
         <ul>
-            <li v-for="book in books" :key="book.name">
+            <li v-for="book in allBooks" :key="book.name" :to="`/book/${book.name}`">
                 <div class="card">
                     <div class="card-image">
-                        <img :src="book.image" :alt="book.name">
+                        <router-link :to="`/book/${book.name}`">
+                            <img :src="book.image" :alt="book.name">
+                        </router-link>
                     </div>
                     <div class="card-content">
                         <h3>{{book.name}}</h3>
@@ -18,77 +20,51 @@
 
 
 <script>
+import { mapStores } from "pinia";
+import { useBookStore } from "../stores/books";
+
 export default {
+    components: {
+    },
     data() {
         return {
-            books: [
-                {
-                    image: './src/assets/books/poe-poems.jpg',
-                    name: 'Poems from Edgar Allan Poe',
-                    author: 'Edgar Allan Poe',
-                    description: 'Edgar Allan Poe is credited with having pioneered the short story, having perfected the tale of psychological horror, and having revolutionized modern poetics.',
-                    genre: '',
-                    genres: ['Terror', 'Supernatural fiction', 'Poetry'],
-                },
-                {
-                    image: './src/assets/books/poe-tales.jpg',
-                    name: 'The Complete Tales and Poems from Edgar Allan Poe',
-                    author: 'Edgar Allan Poe',
-                    description: 'Edgar Allan Poe is credited with having pioneered the short story, having perfected the tale of psychological horror, and having revolutionized modern poetics.',
-                    genre: '',
-                    genres: ['Terror', 'Supernatural fiction', 'Thriller'],
-                },
-                {
-                    image: './src/assets/books/chuya-poems.jpg',
-                    name: 'The Poems of Nakahara Chuya',
-                    author: 'Nakahara Chuya',
-                    description: 'This selection of poems from throughout Nakahara’s creative life includes collected and uncollected work and draws on recent scholarship to give a full account of this extraordinary figure.',
-                    genre: '',
-                    genres: ['Poetry', 'Supernatural fiction'],
-                },
-                {
-                    image: './src/assets/books/crime-punishment.jpg',
-                    name: 'The Complete Tales and Poems from Edgar Allan Poe',
-                    author: 'Edgar Allan Poe',
-                    description: 'Edgar Allan Poe is credited with having pioneered the short story, having perfected the tale of psychological horror, and having revolutionized modern poetics.',
-                    genre: '',
-                    genres: ['Terror', 'Supernatural fiction'],
-                },
-                {
-                    image: './src/assets/books/little-women.jpg',
-                    name: 'The Complete Tales and Poems from Edgar Allan Poe',
-                    author: 'Edgar Allan Poe',
-                    description: 'Edgar Allan Poe is credited with having pioneered the short story, having perfected the tale of psychological horror, and having revolutionized modern poetics.',
-                    genre: '',
-                    genres: ['Terror', 'Supernatural fiction'],
-                },
-                {
-                    image: './src/assets/books/pride-prejudice.jpeg',
-                    name: 'The Complete Tales and Poems from Edgar Allan Poe',
-                    author: 'Edgar Allan Poe',
-                    description: 'Edgar Allan Poe is credited with having pioneered the short story, having perfected the tale of psychological horror, and having revolutionized modern poetics.',
-                    genre: '',
-                    genres: ['Terror', 'Supernatural fiction'],
-                },
-                {
-                    image: './src/assets/books/song-achilles.jpg',
-                    name: 'The Complete Tales and Poems from Edgar Allan Poe',
-                    author: 'Edgar Allan Poe',
-                    description: 'Edgar Allan Poe is credited with having pioneered the short story, having perfected the tale of psychological horror, and having revolutionized modern poetics.',
-                    genre: '',
-                    genres: ['Terror', 'Supernatural fiction'],
-                },
-                {
-                    image: './src/assets/books/great-gatsby.png',
-                    name: 'The Great Gatsby',
-                    author: 'Edgar Allan Poe',
-                    description: 'Edgar Allan Poe is credited with having pioneered the short story, having perfected the tale of psychological horror, and having revolutionized modern poetics.',
-                    genre: '',
-                    genres: ['Terror', 'Supernatural fiction'],
-                },
+            image: "",
+            name: "",
+            author: "",
+            description: "",
+            genre: '',
+            genres: [],
+            file: {},
+        };
+    },
+    computed: {
+        ...mapStores(useBookStore),
+        allBooks() {
+            return this.booksStore.getBooks;
+        },
+    },
+    methods: {
+        createNewBook() {
+            const newBook = {
+                image: this.image,
+                name: this.name,
+                author: this.author,
+                description: this.description,
+                genre: this.genre,
+                genres: this.genres,
+            };
 
-            ]
+            this.booksStore.newBook(newBook);
+            this.image = "";
+            this.name = "";
+            this.author = "";
+            this.description = "";
+            this.genre = "";
+            this.genres = "";
         }
+    },
+    mounted() {
+        this.booksStore.loadBooks()
     }
 }
 </script>
@@ -102,6 +78,7 @@ export default {
 
 ul>li {
     display: inline-block;
+    margin: 16px 8px;
 }
 
 .card {
@@ -111,6 +88,7 @@ ul>li {
     border: 0;
     border-radius: 25px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    cursor: pointer;
     /**box-shadow: 0 0 30px rgba(0, 0, 0, .04);*/
     transition: .4s ease;
 }
@@ -140,8 +118,7 @@ ul>li {
     font-family: 'Avenir LT Std', sans-serif;
     font-size: 14px;
     font-weight: 300;
-    margin: 8px 0 22px;
-    bottom: 8px;
+    bottom: 66px;
     text-align: justify;
 }
 
