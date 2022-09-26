@@ -33,7 +33,7 @@ export default {
                 <div class="detail-description">
                 <h3> Description </h3>
                 <p> {{currentBook.description}}</p>
-                <p> {{currentBook.genres}} </p>
+                <p class="items" v-for="current in currentBook.genres" :key="current.name">{{current}}</p>
             </div>
             </div>
             
@@ -46,6 +46,7 @@ export default {
 .con{
     padding: 40px 0px 0px 8px;
     display: flex;
+    justify-content: center;
 }
 .detail{
     width: 500px;
@@ -74,7 +75,7 @@ export default {
     font-family: 'Cardo';
     font-weight: 700;
     font-size: 28px;
-    margin-top: 16px;
+    margin-top: 40px;
 }
 
 .detail .detail-content p{
@@ -103,5 +104,19 @@ export default {
     font-weight: 400;
     padding: 5px;
     text-align: left;
+}
+
+.items{
+    display: inline-block;
+    margin: 20px 10px 0 0;
+    padding: 6px 12px;
+    background: #eee;
+    border-radius: 20px;
+    font-size: 12px;
+    font-family: 'Avenir LT Std';
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: #777;
+    cursor: pointer;
 }
 </style>
