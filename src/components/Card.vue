@@ -24,8 +24,6 @@ import { mapStores } from "pinia";
 import { useBookStore } from "../stores/books";
 
 export default {
-    components: {
-    },
     data() {
         return {
             image: "",
