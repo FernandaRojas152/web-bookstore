@@ -1,42 +1,70 @@
 <template>
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="createNewBook">
         <label> Book cover: </label>
         <div>
             <input class="form-control" ref="fileInput" type="file" @input="pickFile">
         </div>
-        <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${previewImage})` }" @click="selectImage" >
+        <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image})` }" @click="selectImage" >
         </div>
-        <input type="image" v-model="image" placeholder="img">
         <label> Name: </label>
-        <input type="text" required v-model="name" placeholder="Book name">
+        <input type="text" v-model="name" placeholder="Book name">
         <label> Author: </label>
-        <input type="text" required v-model="author" placeholder="Author">
+        <input type="text" v-model="author" placeholder="Author">
         <label> Description: </label>
-        <input type="text" required v-model="description" placeholder="Your book description">
+        <input type="text" v-model="description" placeholder="Your book description">
         <label>Genres: </label>
         <input type="text" v-model="genre" @keyup.alt="addGenre">
         <div v-for="g in genres" :key="g" class="pill">
             {{g}}
         </div>
-        <div class="submit">
-            <button> Add Book </button>
-        </div>
+        
+        <button @click.prevent="(e) => createNewBook()"> Add Book </button>
     </form>
 </template>
 
 <script>
+import { mapStores } from "pinia";
+import { useBookStore } from "../stores/books";
 export default {
     data() {
         return {
-            previewImage: '',
-            name: '',
-            author: '',
-            description: '',
+            image: "",
+            name: "",
+            author: "",
+            description: "",
             genre: '',
             genres: [],
-        }
+        };
+    },
+    computed: {
+        ...mapStores(useBookStore),
+        allBooks() {
+            return this.booksStore.getBooks;
+        },
+    },
+    mounted() {
+        this.booksStore.loadBooks()
     },
     methods: {
+        createNewBook() {
+            const newBook = {
+                image: this.image,
+                name: this.name,
+                author: this.author,
+                description: this.description,
+                genre: this.genre,
+                genres: this.genres,
+            };
+
+            this.booksStore.newBook(newBook);
+            
+            this.image = "";
+            this.name = "";
+            this.author = "";
+            this.description = "";
+            this.genre = "";
+            this.genres = "";
+        },
         addGenre(e) {
             if (e.key === ',' && this.genre) {
                 if (!this.genres.includes(this.genre)) {
@@ -61,7 +89,7 @@ export default {
             if (file && file[0]) {
                 let reader = new FileReader
                 reader.onload = e => {
-                    this.previewImage = e.target.result
+                    this.image = e.target.result
                 }
                 reader.readAsDataURL(file[0])
                 this.$emit('input', file[0])

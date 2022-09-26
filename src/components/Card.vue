@@ -44,24 +44,6 @@ export default {
         },
     },
     methods: {
-        createNewBook() {
-            const newBook = {
-                image: this.image,
-                name: this.name,
-                author: this.author,
-                description: this.description,
-                genre: this.genre,
-                genres: this.genres,
-            };
-
-            this.booksStore.newBook(newBook);
-            this.image = "";
-            this.name = "";
-            this.author = "";
-            this.description = "";
-            this.genre = "";
-            this.genres = "";
-        }
     },
     mounted() {
         this.booksStore.loadBooks()
