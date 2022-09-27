@@ -53,13 +53,15 @@ export default {
 
 
 <style scoped lang="scss">
+    body{
+        padding:0;
+    }
 nav {
     font-family: Cardo;
     font-size: 22px;
     width: 100%;
     border-bottom: 1px solid transparent;
     background-color: rgba(254, 237, 237, 0.5);
-    position: fixed;
     bottom: 40px;
     height: 70px;
 }
