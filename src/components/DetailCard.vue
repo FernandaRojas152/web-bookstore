@@ -21,34 +21,39 @@ export default {
 </script>
 
 <template>
-        <div class="con">
-            <div class="detail">
-                <div class="card-detail">
-                    <img :src="currentBook.image" :alt="currentBook.name">
-                </div>
-                <div class="detail-content">
-                    <h3>{{currentBook.name}}</h3>
-                    <p>{{currentBook.author}}</p>
-                </div>
-                <div class="detail-description">
+    <div class="con">
+        <div class="detail">
+            <div class="card-detail">
+                <img :src="currentBook.image" :alt="currentBook.name">
+            </div>
+            <div class="detail-content">
+                <h3>{{currentBook.name}}</h3>
+                <p>{{currentBook.author}}</p>
+            </div>
+            <div class="detail-description">
                 <h3> Description </h3>
                 <p> {{currentBook.description}}</p>
                 <p class="items" v-for="current in currentBook.genres" :key="current.name">{{current}}</p>
+                <div class="return">
+                    <router-link to="/FerLex" tag="button" class="btn"> Acept
+                    </router-link>
+                </div>
+
             </div>
-            </div>
-            
         </div>
-        <!-- <p class="algo">Id del producto: {{ $route.params.bookId }}</p> -->
+    </div>
+    <!-- <p class="algo">Id del producto: {{ $route.params.bookId }}</p> -->
 </template>
 
 
 <style scoped lang="scss">
-.con{
+.con {
     padding: 40px 0px 0px 8px;
     display: flex;
     justify-content: center;
 }
-.detail{
+
+.detail {
     width: 500px;
     height: 500px;
     padding: 0px;
@@ -57,18 +62,19 @@ export default {
     border-radius: 25px;
 }
 
-.card-detail{
+.card-detail {
     margin-left: auto;
     margin-right: auto;
     width: 250px;
     height: 318px;
 }
-.detail .card-detail img{
+
+.detail .card-detail img {
     border-radius: 25px;
     width: 100%;
 }
 
-.detail .detail-content > h3{
+.detail .detail-content>h3 {
     top: 8px;
     text-align: center;
     color: #000000;
@@ -78,7 +84,7 @@ export default {
     margin-top: 40px;
 }
 
-.detail .detail-content p{
+.detail .detail-content p {
     color: #7C8486;
     font-family: 'Avenir LT Std', sans-serif;
     font-size: 12px;
@@ -87,7 +93,7 @@ export default {
     text-align: center;
 }
 
-.detail .detail-description h3{
+.detail .detail-description h3 {
     top: 8px;
     color: #000000;
     margin: 0px;
@@ -97,7 +103,8 @@ export default {
     font-size: 20px;
     margin-top: 16px;
 }
-.detail .detail-description p{
+
+.detail .detail-description p {
     color: #7C8486;
     font-family: 'Avenir LT Std', sans-serif;
     font-size: 14px;
@@ -106,7 +113,7 @@ export default {
     text-align: left;
 }
 
-.items{
+.items {
     display: inline-block;
     margin: 20px 10px 0 0;
     padding: 6px 12px;
@@ -118,5 +125,25 @@ export default {
     font-weight: bold;
     color: #777;
     cursor: pointer;
+}
+
+.return{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    top: 20px;
+}
+.btn{
+    margin: 10px;
+    font-family: Cardo;
+    font-size: 22px;
+    color: white;
+    border: none;
+    width: 300px;
+    height: 39px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #2c3639;
 }
 </style>
