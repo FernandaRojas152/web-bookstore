@@ -12,7 +12,8 @@ export default {
 
 <style scoped lang="scss">
 figure{
-    padding-top: 20px;
+    display:flex;
+    align-content: flex-start;
     text-align: right;
 }
 

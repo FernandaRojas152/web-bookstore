@@ -24,6 +24,9 @@ import { mapStores } from "pinia";
 import { useBookStore } from "../stores/books";
 
 export default {
+    props:{
+        book:{},
+    },
     data() {
         return {
             image: "",
@@ -32,7 +35,6 @@ export default {
             description: "",
             genre: '',
             genres: [],
-            file: {},
         };
     },
     computed: {

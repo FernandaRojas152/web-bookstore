@@ -35,7 +35,7 @@ export default {
                 <p> {{currentBook.description}}</p>
                 <p class="items" v-for="current in currentBook.genres" :key="current.name">{{current}}</p>
                 <div class="return">
-                    <router-link to="/FerLex" tag="button" class="btn"> Acept
+                    <router-link to="/FerLex" tag="button" class="btn"> Accept
                     </router-link>
                 </div>
 
@@ -82,6 +82,7 @@ export default {
     font-weight: 700;
     font-size: 28px;
     margin-top: 40px;
+    padding-top: 60px;
 }
 
 .detail .detail-content p {
