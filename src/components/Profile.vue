@@ -11,14 +11,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-figure{
-    display:flex;
-    align-content: flex-start;
-    text-align: right;
+figure {
+    display: flex;
 }
-
-figure img {
-    width: 100px;
-    height: 70px;    
+figure img{
+    width: 45px;
+    height: 50px;
+}
+@media (min-width: 1024px) {
+    figure img {
+        width: 100px;
+        height: 70px;
+    }
 }
 </style>

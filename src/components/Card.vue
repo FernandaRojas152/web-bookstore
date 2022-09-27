@@ -79,9 +79,14 @@ ul>li {
     transform: scale(1.05);
 }
 
+.card-image{
+    height: 100%;
+}
+
 .card .card-image img {
     border-radius: 25px;
     width: 100%;
+    height: 100%;
     transition: .4s ease;
 }
 

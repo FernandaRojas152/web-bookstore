@@ -63,17 +63,11 @@ nav {
     width: 100%;
     border-bottom: 1px solid transparent;
     background-color: rgba(254, 237, 237, 0.5);
+    position: sticky;
     bottom: 40px;
     height: 70px;
 }
 
-nav a:hover {
-    border-bottom: 3px solid #D6BCAE;
-}
-
-nav a:active {
-    border-bottom: 3px solid #D6BCAE;
-}
 
 nav a.router-link-exact-active {
     color: black;
@@ -96,6 +90,14 @@ nav a {
         display: flex;
         justify-content: space-around;
         top: 0;
+    }
+
+    nav a:hover {
+        border-bottom: 3px solid #D6BCAE;
+    }
+
+    nav a:active {
+        border-bottom: 3px solid #D6BCAE;
     }
 }
 </style>
