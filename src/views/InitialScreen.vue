@@ -13,11 +13,14 @@
                 <p>“I have always imagined that Paradise will be a kind of library.”</p>
             </article>
             <div class="buttons">
-            <router-link to="/FerLex" tag="button" class="page"> Continue
-                
-                    <!-- <button>Continue</button>-->
-                    <!--<button>Sign up</button>-->
-                
+            <router-link to="/FerLex">
+                <button>Continue</button>
+            </router-link>
+            <router-link to="/SignIn">
+                <button>Sign in</button>
+            </router-link>
+            <router-link to="/SignUp">
+                <button>Sign up</button>
             </router-link>
             </div>
         </section>

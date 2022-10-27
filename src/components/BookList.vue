@@ -1,10 +1,8 @@
 <script>
 import Card from "./Card.vue"
-import { ref } from 'vue'
 import { mapStores } from "pinia";
 import { useBookStore } from "../stores/books";
 export default {
-
     data() {
         return {
             image: "",
@@ -13,59 +11,45 @@ export default {
             description: "",
             genre: '',
             genres: [],
-            arrayToShow: [],
-            filterKey: "",
-            filterList: "",
+            keyword: '',
+            genre: 'All'
         };
+    },
+    props: {
+        msg: String
     },
     computed: {
         ...mapStores(useBookStore),
         allBooks() {
             return this.booksStore.getBooks;
-
         },
-    },
-    setup() {
-        return {
-            slide: ref(1)
+        getGenres() {
+            return this.booksStore.getAllGenres
         }
     },
     components: {
         Card
     },
-    /* methods:{
-    filter() {
-      if (this.filterKey == "Author" && this.filterValue != "")
-        this.filterByAuthor(this.filterValue);
-      if (this.filterKey == "Name" && this.filterValue != "")
-        this.filterByPlace(this.filterValue);
+    methods: {
+        setFilter(key, value) {
+            this.booksStore.applyFilter(key, value)
+        }
     },
-    filterByAuthor(author) {
-      this.arrayToShow = this.arrayToShow.filter((e) => {
-        //console.log(arrayToShow);
-        return e.author == author;
-       
-      });
-    },
-    filterByPlace(name) {
-      this.arrayToShow = this.arrayToShow.filter((e) => {
-        return e.name == name;
-      });
-    },
-    } */
 }
 </script>
 
 <template>
     <main>
-        <div class="filters">
-            <label>Filter by: </label>
-            <select v-model="filterKey">
-                <option value="" selected disabled hidden> </option>
-                <option>Author</option>
-                <option>Name</option>
+        <div class="greetings">
+            <h3>Filtros:</h3>
+            <label for="keyword">Search by Keyword</label>
+            <input type="text" name="keyword" id="keyword" v-model="keyword"
+                @change="() => setFilter('keyword', keyword)">
+            <br/>
+            <label for="genero">Generos</label>
+            <select name="genero" id="genero" v-model="genre" @change="() => setFilter('genre', genre)">
+                <option v-for="genre in getGenres" :key="genre" :value="genre">{{genre}}</option>
             </select>
-            <input @change="filter" v-model="filterList" />
         </div>
         <h3>My Library</h3>
         <Card />
@@ -73,8 +57,6 @@ export default {
     <footer>
     </footer>
 </template>
-
-
 
 <style scoped lang="scss">
 body,
@@ -90,9 +72,5 @@ h3 {
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
-}
-
-.filters {
-    margin-top: 50px;
 }
 </style>

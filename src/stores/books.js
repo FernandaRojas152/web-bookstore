@@ -66,28 +66,51 @@ export const useBookStore = defineStore("books", {
                 genre: '',
                 genres: ['Tragedy', 'Realism', 'Modernism', 'Social Satire'],
             },
-
         ],
+        selectedFilters: {}
     }),
     getters: {
         getBooks: (state) => [...state.books],
+        getFilteredBooks: (state) => {
+            const filteredbooks = state.books.filter((book)=> {
+            const {description, name, author, genres} = book
+            const keyword = state.selectedFilters.keyword?.toLowerCase() || ''
+            const genre = state.selectedFilters.genre
+            return keyword || (genre && genre !== 'All')? 
+            (/*FILTROS DE KEYWORD*/ description.toLowerCase().includes(keyword) || 
+            name.toLowerCase().includes(keyword) ||
+            author.toLowerCase().includes(keyword)) &&
+            genres.includes(genre) : true
+            })
+            return filteredbooks
+          },
+          getAllGenres: (state) => {
+            const genres = ['All'];
+            state.books.forEach(element => {
+              element.genres.forEach(genreToAdd => {
+                if(!genres.some((addedGenre)=> addedGenre ===genreToAdd)){
+                  genres.push(genreToAdd)
+                }
+              })
+            });
+            return genres
+          }
     },
     actions: {
         newBook(book) {
             this.books=[...this.books, book]
-            //this.books.push(book);
-            //this.localStorageBooks.push(book)
-            //this.loadBooks();
             localStorage.setItem('books', JSON.stringify(this.books))
         },
         loadBooks() {
             this.localStorageBooks = JSON.parse(localStorage.getItem('books'))
-            //this.books = this.products.concat([...this.localStorageBooks])
         },
         getBookById(id) {
             const filteredBooks = this.books.filter((book) => id.toLowerCase() === book.name.toLowerCase());
             return filteredBooks ? {...filteredBooks[0] } : null
         },
+        applyFilter(key, value){
+            this.selectedFilters[key] = value
+        }
     },
 
 });

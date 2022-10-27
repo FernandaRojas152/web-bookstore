@@ -4,6 +4,8 @@ import PrincipalScreen from '../views/PrincipalScreen.vue';
 import AddBookView from '../views/AddBookView.vue';
 import DetailCard from '../components/DetailCard.vue'
 import ShowBookView from '../views/ShowBookView.vue';
+import SignInView from '../views/SignInView.vue';
+import SignUpView from '../views/SignUpView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,15 +18,25 @@ const router = createRouter({
     {
       path: '/FerLex',
       name: 'ferlex',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: PrincipalScreen
     },
     {
       path: '/AddBook',
       name:'add-book',
       component: AddBookView,
+      meta:{
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/SignIn',
+      name:'sign-in',
+      component: SignInView,
+    },
+    {
+      path: '/SignUp',
+      name:'sign-up',
+      component: SignUpView,
     },
     {
       path: '/book/:bookId',

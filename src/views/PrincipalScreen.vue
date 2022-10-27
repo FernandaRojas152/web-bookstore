@@ -1,31 +1,25 @@
 <script>
 import BookList from "../components/BookList.vue"
 import Profile from "../components/Profile.vue"
-
+import HeroHeader from "../components/HeroHeader.vue";
+import { mapStores } from "pinia";
+import { useBookStore } from "../stores/books";
 
 export default {
     components: {
-        BookList, Profile
+        BookList,
+        Profile,
+        HeroHeader
     },
-    methods: {
-        filter() {
-            if (this.filterKey == "Author" && this.filterValue != "")
-                this.filterByAuthor(this.filterValue);
-            if (this.filterKey == "Place" && this.filterValue != "")
-                this.filterByPlace(this.filterValue);
-
-        },
-        filterByAuthor(author) {
-            this.arrayToShow = this.arrayToShow.filter((e) => {
-                return e.author == author;
-            });
-        },
-        filterByPlace(place) {
-            this.arrayToShow = this.arrayToShow.filter((e) => {
-                return e.place == place;
-            });
-        },
+    computed: {
+    ...mapStores(useBookStore),
+    allBooks(){
+      return this.booksStore.getFilteredBooks;
+    },
+    mounted(){
+    this.booksStore.loadBooks()
     }
+  },
 }
 </script>
 
@@ -44,10 +38,8 @@ export default {
         <div class="panels">
             <BookList />
         </div>
-
     </main>
     <footer>
-
     </footer>
 </template>
 
