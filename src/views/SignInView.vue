@@ -12,11 +12,11 @@ import {auth} from "../firebase/config"
         methods: {
             signIn(e) {
                 e.preventDefault()
-                this.authenticationStore.signIn(this.email, this.password)
+                this.authenticationStore.login(this.email, this.password)
             },
             logOut(e) {
                 e.preventDefault()
-                this.authenticationStore.logOut()
+                this.authenticationStore.signOutUser()
             }
         },
         computed: {

@@ -14,7 +14,7 @@ export default {
         newUser(e) {
             e.preventDefault()
             if (this.password === this.confirmPassword) {
-                this.authenticationStore.newUserAwait(this.email, this.password)
+                this.authenticationStore.registerUser(this.email, this.password)
                 console.log('no te voy a esperar')
             }
             else alert('Passwords no coinciden')

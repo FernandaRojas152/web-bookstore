@@ -4,6 +4,7 @@ import Profile from "../components/Profile.vue"
 import HeroHeader from "../components/HeroHeader.vue";
 import { mapStores } from "pinia";
 import { useBookStore } from "../stores/books";
+import {useAuthenticationStore} from '../stores/authentication';
 
 export default {
     components: {
@@ -12,6 +13,7 @@ export default {
         HeroHeader
     },
     computed: {
+    ...mapStores(useAuthenticationStore),
     ...mapStores(useBookStore),
     allBooks(){
       return this.booksStore.getFilteredBooks;
@@ -25,14 +27,17 @@ export default {
 
 <template>
     <header>
-        <nav>
+        <nav  v-if="!authenticationStore.loadingSession">
             <RouterLink to="/FerLex">Discover</RouterLink>
-            <RouterLink to="/addBook">Add book</RouterLink>
+            <RouterLink to="/addBook"  v-if="authenticationStore.userData">Add book</RouterLink>
             <RouterLink to="/about">Cart</RouterLink>
             <RouterLink to="/account">
                 <Profile />
             </RouterLink>
         </nav>
+        <div v-else>
+      loading user...
+    </div>
     </header>
     <main>
         <div class="panels">
