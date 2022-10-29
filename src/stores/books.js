@@ -1,7 +1,24 @@
 import { defineStore } from 'pinia';
+import { collection, getDocs, addDoc, onSnapshot } from "firebase/firestore";
+import {db} from "../firebase/config"
+const querySnapshot = await getDocs(collection(db, "books"));
+  let fbBooks =[]
+  querySnapshot.forEach((doc) => {
+        const book = {
+            id: doc.id,
+            image:doc.data().image,
+            name:doc.data().name,
+            author:doc.data().author,
+            description:doc.data().description,
+            genre:doc.data().genre,
+            genres:doc.data().genres,                        
+        }
+        fbBooks.push(book);
+    });
 export const useBookStore = defineStore("books", {
     state: () => ({
-        books: localStorage.getItem("books") ? JSON.parse(localStorage.getItem("books")) :[
+        books: fbBooks
+        /* books: localStorage.getItem("books") ? JSON.parse(localStorage.getItem("books")) :[
             {
                 image: '../src/assets/books/poe-poems.jpg',
                 name: 'Poems from Edgar Allan Poe',
@@ -67,7 +84,7 @@ export const useBookStore = defineStore("books", {
                 genres: ['Tragedy', 'Realism', 'Modernism', 'Social Satire'],
             },
         ],
-        selectedFilters: {}
+        selectedFilters: {} */
     }),
     getters: {
         getBooks: (state) => [...state.books],
@@ -98,10 +115,26 @@ export const useBookStore = defineStore("books", {
     },
     actions: {
         newBook(book) {
+            console.log(book);
+            const docRef =  addDoc(collection(db, "books"), book);
             this.books=[...this.books, book]
             localStorage.setItem('books', JSON.stringify(this.books))
         },
-        loadBooks() {
+        async loadBooks() {
+            const querySnapshot = await getDocs(collection(db, "books"));
+            let fbBooks =[]
+            querySnapshot.forEach((doc) => {
+            const book = {
+            id: doc.id,
+            image:doc.data().image,
+            name:doc.data().name,
+            author:doc.data().author,
+            description:doc.data().description,
+            genre:doc.data().genre,
+            genres:doc.data().genres,                        
+        }
+        fbBooks.push(book);
+    });
             this.localStorageBooks = JSON.parse(localStorage.getItem('books'))
         },
         getBookById(id) {
