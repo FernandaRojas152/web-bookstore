@@ -132,10 +132,10 @@ export const useBookStore = defineStore("books", {
             description:doc.data().description,
             genre:doc.data().genre,
             genres:doc.data().genres,                        
-        }
-        fbBooks.push(book);
-    });
-            this.localStorageBooks = JSON.parse(localStorage.getItem('books'))
+            }
+            fbBooks.push(book);
+            });
+            this.localStorageBooks = fbBooks;
         },
         getBookById(id) {
             const filteredBooks = this.books.filter((book) => id.toLowerCase() === book.name.toLowerCase());
