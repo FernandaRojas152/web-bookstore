@@ -14,8 +14,7 @@ export default {
         newUser(e) {
             e.preventDefault()
             if (this.password === this.confirmPassword) {
-                this.authenticationStore.registerUser(this.email, this.password)
-                console.log('no te voy a esperar')
+                this.authenticationStore.newUser(this.email, this.password)
             }
             else alert('Passwords no coinciden')
         }
@@ -30,8 +29,8 @@ export default {
 </script>
 <template>
     <section>
-        <h1>Crear Una Cuenta</h1>
-        <form>
+        <h1 class="text">Crear Una Cuenta</h1>
+        <form class="sign-up">
             <label for="email">Email:</label>
             <input type="email" name="email" id="email" v-model="email">
             <br>
@@ -40,9 +39,45 @@ export default {
             <br>
             <label for="cpassword">Confirm Password:</label>
             <input type="password" name="cpassword" id="cpassword" v-model="confirmPassword">
-            <button @click="newUser">Crear cuenta</button>
+            <button class="btn" @click="newUser">Crear cuenta</button>
         </form>
     </section>
 </template>  
-<style>
+<style scoped lang="scss">
+.text{
+    font-family: 'Cardo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 38px;
+    text-align: center;
+    margin: auto;
+    padding-bottom: 30px;
+}
+.sign-up {
+    font-family: 'Avenir LT Std', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+input {
+  border-style: solid;
+  border-width: 1px;
+}
+.btn {
+    margin: 10px;
+    font-family: Cardo;
+    font-size: 22px;
+    color: white;
+    border: none;
+    width: 300px;
+    height: 39px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #2c3639;
+}
 </style>

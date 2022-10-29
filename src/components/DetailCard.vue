@@ -1,17 +1,33 @@
 <script>
 import { mapStores } from "pinia";
 import { useBookStore } from "../stores/books";
+import StarRating from 'vue-star-rating';
 
 export default {
+    components: {
+        StarRating,
+    },
     data() {
         return {
+            reviewSubmitted: false,
+            rating: 0,
             currentBook: {
-
+                rating: 0,
             }
         };
     },
+    inject: ["myRating"],
+    methods: {
+        setRating(e) {
+        this.reviewSubmitted = true;
+        this.$emit("rating-selected", e);
+      },
+    },
     computed: {
         ...mapStores(useBookStore),
+        setRating(rating) {
+            this.rating = rating;
+        },
     },
     mounted() {
         this.currentBook = this.booksStore.getBookById(this.$route.params.bookId);
@@ -24,16 +40,21 @@ export default {
     <div class="con">
         <div class="detail">
             <div class="card-detail">
-                <img :src="currentBook.image" :alt="currentBook.name">
+                <img :src="currentBook.image" :alt="currentBook.name">             
             </div>
             <div class="detail-content">
-                <h3>{{currentBook.name}}</h3>
-                <p>{{currentBook.author}}</p>
+                <h3>{{ currentBook.name }}</h3>
+                <p>{{ currentBook.author }}</p>
+            </div>
+            <div class="detail-rating">
+                <star-rating :rating= "currentBook.rating" :increment="0.5" :star-size="30"
+                inactive-color="#FFE484" :read-only="reviewSubmitted" active-color="#ffda00"
+                @rating-selected="e => $emit('rating-selected', booksStore.updateBook() , e)"></star-rating>
             </div>
             <div class="detail-description">
                 <h3> Description </h3>
-                <p> {{currentBook.description}}</p>
-                <p class="items" v-for="current in currentBook.genres" :key="current.name">{{current}}</p>
+                <p> {{ currentBook.description }}</p>
+                <p class="items" v-for="current in currentBook.genres" :key="current.name">{{ current }}</p>
                 <div class="return">
                     <router-link to="/FerLex" tag="button" class="btn"> Accept
                     </router-link>
@@ -127,15 +148,19 @@ export default {
     color: #777;
     cursor: pointer;
 }
+.detail .detail-rating{
+    margin-top: 24px;
+}
 
-.return{
+.return {
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
     align-items: center;
     top: 20px;
 }
-.btn{
+
+.btn {
     margin: 10px;
     font-family: Cardo;
     font-size: 22px;

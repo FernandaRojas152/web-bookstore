@@ -43,14 +43,6 @@ export const useAuthenticationStore = defineStore("authentication", {
                     alert(errorMessage);
                 });
         },
-        async newUserAwait(email, password) {
-            try{
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password)
-            console.log('usuario creado', userCredential.user)
-        } catch(error) {
-            alert(errorMessage);
-        }
-        },
         async login(email, password) {
             this.loadingUser = true;
             try {

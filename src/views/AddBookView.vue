@@ -34,6 +34,7 @@ export default {
             description: "",
             genre: '',
             genres: [],
+            rating: 0,
         };
     },
     computed: {
@@ -54,6 +55,7 @@ export default {
                 description: this.description,
                 genre: this.genre,
                 genres: this.genres,
+                rating: 0,
             };
 
             this.booksStore.newBook(newBook);
@@ -64,6 +66,7 @@ export default {
             this.description = "";
             this.genre = "";
             this.genres = "";
+            this.rating=0;
         },
         addGenre(e) {
             if (e.key === ',' && this.genre) {

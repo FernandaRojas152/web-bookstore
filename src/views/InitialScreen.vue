@@ -13,9 +13,9 @@
                 <p>“I have always imagined that Paradise will be a kind of library.”</p>
             </article>
             <div class="buttons">
-            <router-link to="/FerLex">
+<!--             <router-link to="/FerLex">
                 <button>Continue</button>
-            </router-link>
+            </router-link> -->
             <router-link to="/SignIn">
                 <button>Sign in</button>
             </router-link>
@@ -77,7 +77,7 @@ p {
     flex-flow: column wrap;
     justify-content: space-around;
     align-items: center;
-    top: 102px;
+    top: 100px;
 }
 .page{
     margin: 10px;

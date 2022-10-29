@@ -11,7 +11,8 @@ const querySnapshot = await getDocs(collection(db, "books"));
             author:doc.data().author,
             description:doc.data().description,
             genre:doc.data().genre,
-            genres:doc.data().genres,                        
+            genres:doc.data().genres,
+            rating: doc.data().rating,                        
         }
         fbBooks.push(book);
     });
@@ -131,7 +132,8 @@ export const useBookStore = defineStore("books", {
             author:doc.data().author,
             description:doc.data().description,
             genre:doc.data().genre,
-            genres:doc.data().genres,                        
+            genres:doc.data().genres,
+            rating: doc.data().rating,                        
             }
             fbBooks.push(book);
             });
@@ -143,6 +145,9 @@ export const useBookStore = defineStore("books", {
         },
         applyFilter(key, value){
             this.selectedFilters[key] = value
+        },
+        updateBook(){
+            console.log("Si esta entrando");
         }
     },
 

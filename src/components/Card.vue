@@ -22,9 +22,9 @@
 <script>
 import { mapStores } from "pinia";
 import { useBookStore } from "../stores/books";
-
 export default {
     props:{
+        myRating: Number,
         book:{},
     },
     data() {
@@ -35,6 +35,7 @@ export default {
             description: "",
             genre: '',
             genres: [],
+            rating: 0,
         };
     },
     computed: {
@@ -44,6 +45,9 @@ export default {
         },
     },
     methods: {
+        emit(rating) {
+        this.$emit("rating-selected", rating);
+        }
     },
     mounted() {
         this.booksStore.loadBooks()
